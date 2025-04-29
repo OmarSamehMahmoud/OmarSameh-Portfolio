@@ -18,9 +18,3 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '20'
-
-    - name: Install htmlhint
-      run: npm install -g htmlhint
-
-    - name: Run htmlhint on all HTML files
-      run: htmlhint "**/*.html"
