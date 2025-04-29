@@ -19,4 +19,8 @@ jobs:
       with:
         node-version: '20'
 
-    
+    - name: Install htmlhint
+      run: npm install -g htmlhint
+
+    - name: Run htmlhint on all HTML files
+      run: htmlhint "**/*.html"
