@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Omar Sameh | Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ✅ New Font: Raleway -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet" />
+
+    <!-- Devicon Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <style>
+      #skills {
+        text-align: center;
+      }
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .skill-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #444;
+      }
+
+      .skill-item i {
+        font-size: 3rem;
+        transition: transform 0.3s ease;
+      }
+
+      .skill-item i:hover,
+      .skill-item img:hover {
+        transform: scale(1.15);
+      }
+
+      .skill-category h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: #222;
+      }
+
+      .skill-item img {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0.3rem;
+        transition: transform 0.3s ease;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body class="is-loading">
+    <div id="wrapper">
+      <section id="main">
+        <header>
+          <span class="avatar"><img src="images/avatar.jpg" alt="Tarek Zaki" /></span>
+          <h1>Omar Sameh</h1>
+          <p class="tagline">Senior Embedded Linux Engineer @ ELARABY Group | IoT • AI • DevOps • AOSP</p>
+
+          <p style="margin-top: 1em;">
+            <a href="assets/.pdf" class="button icon fa-download" download>Download CV</a>
+          </p>
+          <ul class="icons">
+            <li><a href="mailto:omarsamehmahmoud@gmail.com" class="fa fa-envelope"><span class="label">Email</span></a></li>
+            <li><a href="https://www.linkedin.com/in/omarsamehmahmoudsyam/" class="fa fa-linkedin"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/OmarSamehMahmoud" class="fa fa-github"><span class="label">GitHub</span></a></li>
+          </ul>
+        </header>
+
+
+                <div class="section-divider"></div>
+                <section id="about">
+                    <h2>About Me</h2>
+                    <p>
+                        I am Omar Sameh ,Highly skilled Senior Embedded Linux Engineer with 3 years of experience in developing, deploying, and optimizing embedded systems. Proven track record in leading Linux-based projects, driving innovations IoT ,AI and implementing efficient system designs that enhanced product performance by 30%. Adept in Linux Kernel development, device drivers, and embedded software architecture..
+                    </p>
+                </section>
+
+                <div class="section-divider"></div>
+                <section id="experience">
+                    <h2>Experience</h2>
+
+                    <div class="job">
+                        <h3><i class="fa fa-briefcase"></i> Senior Embedded Linux Engineer - ELARABY Group </h3>
+                        <p class="job-meta"><i class="fa fa-calendar"></i> Jan 2024 – Now &nbsp; | &nbsp; <i class="fa fa-map-marker"></i> Cairo, Egypt</p>
+                        <ul class="tight-list">
+                            <li>Developing innovation and new software technology in El-Araby products.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <h3><i class="fa fa-briefcase"></i> Embedded Linux Engineer - ELARABY Group </h3>
+                        <p class="job-meta"><i class="fa fa-calendar"></i> Jan 2023 – Jan 2024 &nbsp; | &nbsp; <i class="fa fa-map-marker"></i> Cairo, Egypt</p>
+                        <ul class="tight-list">
+                            <li>Developing innovation and new software technology in El-Araby products.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <h3><i class="fa fa-briefcase"></i> Junior Embedded Linux Engineer - ELARABY Group </h3>
+                        <p class="job-meta"><i class="fa fa-calendar"></i> May 2022 – Jan 2023 &nbsp; | &nbsp; <i class="fa fa-map-marker"></i> Cairo, Egypt</p>
+                        <ul class="tight-list">
+                            <li>Developing Device Drivers for Linux based smart TV (led_indicator,device_self_test).</li>
+							<li>Building full RDK-V yocto image (mediaclient - hybrid - hybriddtv).</li>
+							<li>Writing full configuration files for tornado remote control using irrecord.</li>
+							<li>Integrate tornado remote to tornado using lirc package and its tool (irexec-irw-ircat-mode2).</li>
+							<li>Measure IR NEC signals from tornado remote control using oscilloscope.</li>
+							<li>Create tornado boot logo for rdk image "psplash".</li>
+							<li>Using TScapture and WinTV tool to record streaming data from DVB-T2 channels and DVB-S2 channels and collect log data from each channels (vistel project).</li> 
+							<li>Interact with systemd to have some time measurements to improve tv perfomace.</li>
+							<li>Flashing foxxum-obs image on amlogic board using amlogic burning tool.</li>
+							<li>Co-operate with IT team to build ubuntu VM on Azure to build tornado yocto image.</li>
+							<li>Interact with global protect tool to connect to server to build tornado image.</li>
+
+                        </ul>
+                    </div>
+                </section>
+
+                <div class="section-divider"></div>
+                <section id="projects">
+                    <h2>Projects</h2>
+
+                    <h3>Smart Traffic Station</h3>
+                    <p>
+                        Seven segments shows remaining seconds ,LCD as advertising display, motors to open and close the barriers and buzzer to make attention for closing gates.</p>
+					                      <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_1_Smart_Traffic_Station" 
+                        class="cta-link" target="_blank">View on GitHub</a>
+                    </p>
+
+                    <h3>Line Follower Robot</h3>
+                    <p>
+                        Robot that follow a black line drawn on the ground using Infrared Sensors.</p>                        <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_6_Line_Follower_Robot" 
+                        class="cta-link" target="_blank">View on GitHub</a>
+                    </p>
+					
+					<h3>Based Shadow Alarm with GSM Interface</h3>
+                    <p>
+                        This Project is very useful for security ,It gives SMS alert as soon as person is coming using 
+GSM module , LDR and Buzzer.</p>                        <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_8_Based_Shadow_Alarm_With_GSM_Interface" 
+                        class="cta-link" target="_blank">View on GitHub</a>
+                    </p>
+					
+					<h3>Sun Glasses For Blind People</h3>
+                    <p>
+                       It's used to deserve blind people when they walked at any time to avoid clash with a wall by 
+making ultrasonic calculates the distance between him and the wall and give beep high or low 
+according to the distance. (Implemented Timer0 driver with PWM and Timer1 with ICP).</p>                       <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_5_Sun_Glasses_For_Blind_People" 
+                        class="cta-link" target="_blank">View on GitHub</a>
+                    </p>
+					
+					<h3>Smart Home Automation System Using Android Application</h3>
+                    <p>
+                       The system allows the user to control the home through his smart phone, control Light on/off , , 
+control light intensity from mobile app ,automatic control light using LDR as application of 
+(ADC) ,implemented communication protocol driver (USART) ,implemented drivers to interface 
+with motors; DC, AC Servo to open/close door and control window angle.</p>                       <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_2_Smart_Home_Automation_Using_Andriod_App" 
+                        class="cta-link" target="_blank">View on GitHub</a>
+                    </p>
+					
+					<h3>Bluetooth Controlled Mobile Robot</h3> <p> The user will use his smartphone to move the robot in all directions via Bluetooth and The robot reports three parameters to the user: the temperature value, gas leakage status, and the light status inside the car.</p> <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_4_Bluetooth_Controlled_Mobile_Robot" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Safety Treasury</h3> <p> The system gives the user three chances to enter the correct password. If incorrect three times, the system keeps the door locked, activates a buzzer, and sends an alert via the GSM module and The owner can change the password at any time using external EEPROM.</p> <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_9_Safety_Treasury" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>GSM Based Fire Alarm System</h3> <p> A useful project for fire detection monitoring. It sends SMS alerts upon detecting fire and automatically activates a buzzer using a flame sensor.</p> <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_7_GSM_Based_Fire_Alarm_System" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Designing of System Memory Bootloader Based on ARM Microcontroller</h3> <p> Implemented Flash Driver for erase, read, write, and jump-to-address functionality for flashing code in flash memory. and It use USART DMA transmitter to show user options and receiver to transfer data from USART to RAM and Python script acts as STM32 flasher.</p> <a href="https://github.com/OmarSamehMahmoud/ARM_STM32F103CT8_Bootloader_Project" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Implementation of SW Design for DIO & PORT AutoSar Driver</h3> <p> Applied full layered architecture model and Built MCAL layer with DIO, GPT, and PORT drivers. and Built ECUAL with LED and Button drivers. and Built Services layer with Scheduler and Application layer contains System Logic and Applied DET module for development error tracking.</p> <a href="https://github.com/OmarSamehMahmoud/AutoSar_DIO_PORT_Driver" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>ATM Machine</h3> <p> The system asks for user ID and password, checks Firebase database for validation and account status, If account is active, the user can: 1- Cash Withdraw 2- Balance Inquiry 3- Password Change 4- Fawry Service 5- Exit</p> <a href="https://github.com/OmarSamehMahmoud/ATM_Machine_Python_project" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Building Yocto Custom Image For IoT Smart Home</h3> <p>  Built Yocto image for Raspberry Pi to control a smart home system , Features include (lighting, door control, air conditioner, fans, fire alarm, and temperature monitoring), it interacts with a website and Firebase (real-time database).</p> <a href="https://github.com/OmarSamehMahmoud/Yocto_Image_For_IoT_Smart_Home" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Driver Awareness</h3> <p>  Deep learning-based system to prevent accidents, the system detects driver drowsiness or fatigue and activates a warning alarm.</p> <a href="https://github.com/OmarSamehMahmoud/Driver_Awarness_AI_Project" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Smart IoT Factory (Graduation Project)</h3> <p> Allows owner and workers to control factory systems via website, it improves product quality and worker safety, The owner can monitor and control factory operations remotely.</p> <a href="https://github.com/OmarSamehMahmoud/Smat_Factroy_IoT_Graduation_Project" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>AI Projects</h3> <p> Various machine learning and deep learning models: CNN with MNIST and CIFAR datasets, Covid-19 X-ray classification, LSTM for stock prediction and movie reviews, Linear and Logistic regression, Naive Bayes, AlexNet model.</p> <a href="https://github.com/OmarSamehMahmoud/AI_Projects" class="cta-link" target="_blank">View on GitHub</a> </p>
+					
+                </section>
+
+        <div class="section-divider"></div>
+        <section id="skills">
+          <h2>Skills</h2>
+
+          <div class="skill-category">
+            <h3>Languages</h3>
+            <div class="skills__container bd-grid" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
+			<!-- Left side: Skills Icons -->
+			<div style="flex: 1;">
+			 
+			  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+				<a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
+				  <img src="https://skillicons.dev/icons?i=c" alt="C Programming" height="40"/>
+				</a>
+				<a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer">
+				  <img src="https://skillicons.dev/icons?i=cpp" alt="C++" height="40"/>
+				</a>
+				<a href="https://www.python.org/" target="_blank" rel="noreferrer">
+				  <img src="https://skillicons.dev/icons?i=python" alt="Python" height="40"/>
+				</a>
+				<a href="https://www.rust-lang.org/" target="_blank" rel="noreferrer">
+				  <img src="https://skillicons.dev/icons?i=rust" alt="Rust" height="40"/>
+				</a>
+				<a href="https://www.java.com/" target="_blank" rel="noreferrer">
+				  <img src="https://skillicons.dev/icons?i=java" alt="Java" height="40"/>
+				</a>
+		   <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
+  <img src="https://skillicons.dev/icons?i=bash" alt="Bash" height="40"/>
+</a>
+
+			  </div>
+			</div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Operating Systems</h3>
+            <div style="flex: 1;">
+			 
+			  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+				<a href="https://www.linux.org/" target="_blank" rel="noreferrer">
+				  <img src="https://skillicons.dev/icons?i=linux" alt="Linux" height="40"/>
+				</a>
+				<a href="https://www.microsoft.com/en-us/windows" target="_blank" rel="noreferrer">
+  <img src="https://skillicons.dev/icons?i=windows" alt="Windows" height="40"/>
+</a>
+			  </div>
+			</div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Tools</h3>
+            <div class="skills__container bd-grid" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
+    <!-- Left side: Skills Icons -->
+    <div style="flex: 1;">
+     
+      <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+
+        <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=androidstudio" alt="Android Studio" height="40"/>
+        </a>
+        <a href="https://git-scm.com/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=git" alt="Git" height="40"/>
+        </a>
+        <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=docker" alt="Docker" height="40"/>
+        </a>
+        <a href="https://www.raspberrypi.org/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=raspberrypi" alt="Raspberry Pi" height="40"/>
+        </a>
+        <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=arduino" alt="Arduino" height="40"/>
+        </a>
+        <a href="https://nodejs.org/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=nodejs" alt="NodeJS" height="40"/>
+        </a>
+        <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB" height="40"/>
+        </a>
+        <a href="https://opencv.org/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=opencv" alt="OpenCV" height="40"/>
+        </a>
+        <a href="https://www.qt.io/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=qt" alt="Qt" height="40"/>
+        </a>
+        <a href="https://www.tensorflow.org/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow" height="40"/>
+        </a>
+        <a href="https://azure.microsoft.com/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=azure" alt="Azure" height="40"/>
+        </a>
+        <a href="https://www.postman.com/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=postman" alt="Postman" height="40"/>
+        </a>
+        <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=vscode" alt="VS Code" height="40"/>
+        </a>
+        <a href="https://firebase.google.com/" target="_blank" rel="noreferrer">
+          <img src="https://skillicons.dev/icons?i=firebase" alt="Firebase" height="40"/>
+        </a>
+      </div>
+    </div>
+          </div>
+
+        </section>
+
+        <footer id="footer">
+          <ul class="copyright">
+            <li>&copy; Omar Sameh</li>
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </footer>
+      </section>
+    </div>
+
+    <script>
+      if ('addEventListener' in window) {
+        window.addEventListener('load', function () {
+          document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+        });
+        document.body.className += navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '';
+      }
+    </script>
+  </body>
+</html>
