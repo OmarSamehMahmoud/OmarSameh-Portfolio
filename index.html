@@ -1,314 +1,877 @@
 <!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Omar Sameh | Portfolio</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Omar Sameh | Senior Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg: #0a0e1a;
+      --surface: #111827;
+      --surface2: #1a2235;
+      --accent: #00e5ff;
+      --accent2: #7c3aed;
+      --accent3: #10b981;
+      --text: #f0f4ff;
+      --muted: #8892a4;
+      --border: rgba(0,229,255,0.15);
+      --font-mono: 'Space Mono', monospace;
+      --font-sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-    <!-- ✅ New Font: Raleway -->
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet" />
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
 
-    <!-- Devicon Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+    /* ── GRID BACKGROUND ── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
 
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-    <style>
-      #skills {
-        text-align: center;
-      }
-      .skills-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 2rem;
-      }
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2.5rem;
+      background: rgba(10,14,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--muted); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--accent);
+      transform: scaleX(0); transition: transform 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { transform: scaleX(1); }
 
-      .skill-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 90px;
-        text-align: center;
-        font-size: 0.85rem;
-        color: #444;
-      }
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-      .skill-item i {
-        font-size: 3rem;
-        transition: transform 0.3s ease;
-      }
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 5rem 2rem 3rem;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent3);
+      box-shadow: 0 0 8px var(--accent3);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name .accent { color: var(--accent); }
+    .hero-title {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+    .hero-desc {
+      color: #a0aec0;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+    }
+    .hero-desc strong { color: var(--accent); font-weight: 600; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+    }
+    .btn-primary:hover { background: #33eaff; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-      .skill-item i:hover,
-      .skill-item img:hover {
-        transform: scale(1.15);
-      }
+    /* Hero visual */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .terminal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 100%; max-width: 460px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(0,229,255,0.06);
+    }
+    .terminal-bar {
+      background: var(--surface2);
+      padding: 0.75rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: #ff5f56; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #27c93f; }
+    .terminal-title { color: var(--muted); font-size: 0.75rem; margin-left: auto; margin-right: auto; }
+    .terminal-body { padding: 1.25rem; line-height: 2; }
+    .t-comment { color: #4a5568; }
+    .t-key { color: var(--accent2); }
+    .t-str { color: var(--accent3); }
+    .t-num { color: #fbbf24; }
+    .t-bool { color: #f472b6; }
+    .t-cursor {
+      display: inline-block; width: 8px; height: 1em;
+      background: var(--accent); vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-      .skill-category h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-        color: #222;
-      }
+    /* ── SECTION HEADINGS ── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+    .section-title span { color: var(--accent); }
+    .section-pad { padding: 5rem 0; }
 
-      .skill-item img {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 0.3rem;
-        transition: transform 0.3s ease;
-        object-fit: contain;
-      }
-    </style>
-  </head>
-  <body class="is-loading">
-    <div id="wrapper">
-      <section id="main">
-        <header>
-          <span class="avatar"><img src="images/avatar.jpg" alt="Tarek Zaki" /></span>
-          <h1>Omar Sameh</h1>
-          <p class="tagline">Senior Software Developer II @ ELARABY Group | IoT • AI • DevOps • AOSP</p>
+    /* ── STATS BAND ── */
+    #stats {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { color: var(--muted); font-size: 0.85rem; margin-top: 0.4rem; }
 
-          <p style="margin-top: 1em;">
-            <a href="assets/.pdf" class="button icon fa-download" download>Download CV</a>
-          </p>
-          <ul class="icons">
-            <li><a href="mailto:omarsamehmahmoud@gmail.com" class="fa fa-envelope"><span class="label">Email</span></a></li>
-            <li><a href="https://www.linkedin.com/in/omarsamehmahmoudsyam/" class="fa fa-linkedin"><span class="label">LinkedIn</span></a></li>
-            <li><a href="https://github.com/OmarSamehMahmoud" class="fa fa-github"><span class="label">GitHub</span></a></li>
-          </ul>
-        </header>
+    /* ── EXPERIENCE ── */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .tl-item {
+      padding: 0 0 2.5rem 2.5rem;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute; left: -5px; top: 6px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+    .tl-item.dim::before { background: var(--muted); box-shadow: none; }
+    .tl-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .tl-role {
+      font-size: 1.1rem; font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .tl-company { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+    .tag {
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .tag-accent { border-color: rgba(0,229,255,0.4); color: var(--accent); }
+    .tl-bullets { list-style: none; }
+    .tl-bullets li {
+      color: #a0aec0;
+      font-size: 0.9rem;
+      padding: 0.25rem 0 0.25rem 1.25rem;
+      position: relative;
+    }
+    .tl-bullets li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--accent); font-size: 0.7rem; top: 0.35rem;
+    }
 
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .project-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-4px); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-icon {
+      font-size: 1.5rem; margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+    .project-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .project-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: var(--font-mono); font-size: 0.75rem;
+      color: var(--accent); text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.6rem; }
 
-                <div class="section-divider"></div>
-                <section id="about">
-                    <h2>About Me</h2>
-                    <p>
-                        I am Omar Sameh ,Results-driven Senior Embedded Software Engineer with 3+ years of experience in the full lifecycle 
-development of embedded systems, Linux-based platforms, IoT ecosystems, and AI-integrated smart 
-devices. Proven expertise in AOSP, Linux kernel customization, device drivers, Yocto Project, 
-MQTT/Azure IoT, STM32/ESP32 ecosystems, and AI-driven automation. A strategic thinker with a track 
-record of enhancing system performance by 30% through optimized embedded architectures and cross
-functional leadership in R&D environments.
-                    </p>
-                </section>
+    /* ── SKILLS ── */
+    .skills-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .skill-group-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-bar-item { margin-bottom: 0.8rem; }
+    .skill-bar-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+    .skill-bar-name { font-size: 0.85rem; }
+    .skill-bar-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
+    .skill-bar-track {
+      height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      width: 0; transition: width 1.2s ease;
+    }
 
-                <div class="section-divider"></div>
-                <section id="experience">
-                    <h2>Experience</h2>
+    /* Icons strip */
+    .icons-strip {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;
+    }
+    .icon-pill {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .icon-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .icon-pill img { width: 18px; height: 18px; object-fit: contain; }
 
-                    <div class="job">
-                        <h3><i class="fa fa-briefcase"></i> Senior Software Developer - ELARABY Group </h3>
-                        <p class="job-meta"><i class="fa fa-calendar"></i> Jan 2024 – Now &nbsp; | &nbsp; <i class="fa fa-map-marker"></i> Cairo, Egypt</p>
-                        <ul class="tight-list">
-                            <li>Developing innovation and new software technology in El-Araby products.</li>
-							<li>IoT Projects Lead – Responsible for end-to-end development and deployment of Internet of Things solutions.</li>
-							<li>UI Projects Lead – Managing user interface projects, ensuring usability, design consistency, and seamless user experience.</li>
-							<li>AOSP Projects Lead – Leading Android Open Source Project initiatives, customization, and system-level integrations.</li>
-							<li>AI Projects Lead – Leading AI initiatives across generative AI (LLMs, multimodal models) and AI agents, covering the full cycle from model development and training to deployment and real-world integration.</li>
-							<li>IoT & AI Training Mentor for Interns – Providing hands-on training, guidance, and mentorship for interns in IoT and AI domains, helping them build practical skills and contribute to real projects.</li>
-                        </ul>
-                    </div>
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text); text-decoration: none;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: rgba(0,229,255,0.4); transform: translateX(4px); }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: rgba(0,229,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 1rem;
+    }
+    .contact-info-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.1rem; }
+    .contact-info-val { font-size: 0.9rem; font-weight: 500; }
 
-                    <div class="job">
-                        <h3><i class="fa fa-briefcase"></i> Embedded Linux Engineer - ELARABY Group </h3>
-                        <p class="job-meta"><i class="fa fa-calendar"></i> Jan 2023 – Jan 2024 &nbsp; | &nbsp; <i class="fa fa-map-marker"></i> Cairo, Egypt</p>
-                        <ul class="tight-list">
-                            <li>Developing innovation and new software technology in El-Araby products.</li>
-							<li>Developing and deploying IoT solutions, from firmware and hardware integration to cloud connectivity.</li>
-							<li>Customizing and developing AOSP (Android Open Source Project), including system-level features, device bring-up, and platform optimization.</li>
-							<li>Building and integrating AI solutions, from model development and training to real-world deployment in embedded systems.</li>
-							<li>Providing hands-on training, guidance, and mentorship for interns in IoT and Embedded Linux domains, helping them build practical skills and contribute to real projects.</li>
-                        </ul>
-                    </div>
+    /* footer */
+    footer {
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      position: relative; z-index: 1;
+    }
+    footer span { color: var(--accent); }
 
-                    <div class="job">
-                        <h3><i class="fa fa-briefcase"></i> Junior Embedded Linux Engineer - ELARABY Group </h3>
-                        <p class="job-meta"><i class="fa fa-calendar"></i> May 2022 – Jan 2023 &nbsp; | &nbsp; <i class="fa fa-map-marker"></i> Cairo, Egypt</p>
-                        <ul class="tight-list">
-                            <li>Developing Device Drivers for Linux based smart TV (led_indicator,device_self_test).</li>
-							<li>Building full RDK-V yocto image (mediaclient - hybrid - hybriddtv).</li>
-							<li>Writing full configuration files for tornado remote control using irrecord.</li>
-							<li>Integrate tornado remote to tornado using lirc package and its tool (irexec-irw-ircat-mode2).</li>
-							<li>Measure IR NEC signals from tornado remote control using oscilloscope.</li>
-							<li>Create tornado boot logo for rdk image "psplash".</li>
-							<li>Using TScapture and WinTV tool to record streaming data from DVB-T2 channels and DVB-S2 channels and collect log data from each channels (vistel project).</li> 
-							<li>Interact with systemd to have some time measurements to improve tv perfomace.</li>
-							<li>Flashing foxxum-obs image on amlogic board using amlogic burning tool.</li>
-							<li>Co-operate with IT team to build ubuntu VM on Azure to build tornado yocto image.</li>
-							<li>Interact with global protect tool to connect to server to build tornado image.</li>
+    /* ── FADE-IN ANIMATION ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-                        </ul>
-                    </div>
-                </section>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-visual { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-section { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
 
-                <div class="section-divider"></div>
-                <section id="projects">
-                    <h2>Projects</h2>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>//</span> omar.sameh</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn-primary" style="padding:0.5rem 1.2rem;font-size:0.78rem;">Hire Me</a>
+</nav>
 
-                    <h3>Smart Traffic Station</h3>
-                    <p>
-                        Seven segments shows remaining seconds ,LCD as advertising display, motors to open and close the barriers and buzzer to make attention for closing gates.</p>
-					                      <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_1_Smart_Traffic_Station" 
-                        class="cta-link" target="_blank">View on GitHub</a>
-                    </p>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Available for opportunities</div>
+      <h1 class="hero-name">Omar<br><span class="accent">Sameh</span></h1>
+      <p class="hero-title">$ Senior Software Developer II @ ELARABY Group</p>
+      <p class="hero-desc">
+        Building the future at the intersection of <strong>IoT</strong>, <strong>AI</strong>, <strong>AOSP</strong> &amp; <strong>Embedded Linux</strong>.
+        4+ years crafting production systems that are reliable, intelligent, and fast.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-primary"><i class="fas fa-code"></i> View Projects</a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <span class="terminal-title">developer.json</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-comment">// Omar Sameh — profile</span></div>
+          <div><span style="color:#e2e8f0">{</span></div>
+          <div>&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-str">"Omar Sameh"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-str">"Sr. Software Dev II"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-num">4</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"domains"</span>: [</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"IoT"</span>, <span class="t-str">"AOSP"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"AI/ML"</span>, <span class="t-str">"Linux"</span></div>
+          <div>&nbsp;&nbsp;],</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"available"</span>: <span class="t-bool">true</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-str">"Cairo, EG"</span></div>
+          <div><span style="color:#e2e8f0">}</span> <span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <h3>Line Follower Robot</h3>
-                    <p>
-                        Robot that follow a black line drawn on the ground using Infrared Sensors.</p>                        <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_6_Line_Follower_Robot" 
-                        class="cta-link" target="_blank">View on GitHub</a>
-                    </p>
-					
-					<h3>Based Shadow Alarm with GSM Interface</h3>
-                    <p>
-                        This Project is very useful for security ,It gives SMS alert as soon as person is coming using 
-GSM module , LDR and Buzzer.</p>                        <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_8_Based_Shadow_Alarm_With_GSM_Interface" 
-                        class="cta-link" target="_blank">View on GitHub</a>
-                    </p>
-					
-					<h3>Sun Glasses For Blind People</h3>
-                    <p>
-                       It's used to deserve blind people when they walked at any time to avoid clash with a wall by 
-making ultrasonic calculates the distance between him and the wall and give beep high or low 
-according to the distance. (Implemented Timer0 driver with PWM and Timer1 with ICP).</p>                       <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_5_Sun_Glasses_For_Blind_People" 
-                        class="cta-link" target="_blank">View on GitHub</a>
-                    </p>
-					
-					<h3>Smart Home Automation System Using Android Application</h3>
-                    <p>
-                       The system allows the user to control the home through his smart phone, control Light on/off , , 
-control light intensity from mobile app ,automatic control light using LDR as application of 
-(ADC) ,implemented communication protocol driver (USART) ,implemented drivers to interface 
-with motors; DC, AC Servo to open/close door and control window angle.</p>                       <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_2_Smart_Home_Automation_Using_Andriod_App" 
-                        class="cta-link" target="_blank">View on GitHub</a>
-                    </p>
-					
-					<h3>Bluetooth Controlled Mobile Robot</h3> <p> The user will use his smartphone to move the robot in all directions via Bluetooth and The robot reports three parameters to the user: the temperature value, gas leakage status, and the light status inside the car.</p> <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_4_Bluetooth_Controlled_Mobile_Robot" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Safety Treasury</h3> <p> The system gives the user three chances to enter the correct password. If incorrect three times, the system keeps the door locked, activates a buzzer, and sends an alert via the GSM module and The owner can change the password at any time using external EEPROM.</p> <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_9_Safety_Treasury" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>GSM Based Fire Alarm System</h3> <p> A useful project for fire detection monitoring. It sends SMS alerts upon detecting fire and automatically activates a buzzer using a flame sensor.</p> <a href="https://github.com/OmarSamehMahmoud/Mini_Projects_AVR/tree/main/Project_7_GSM_Based_Fire_Alarm_System" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Designing of System Memory Bootloader Based on ARM Microcontroller</h3> <p> Implemented Flash Driver for erase, read, write, and jump-to-address functionality for flashing code in flash memory. and It use USART DMA transmitter to show user options and receiver to transfer data from USART to RAM and Python script acts as STM32 flasher.</p> <a href="https://github.com/OmarSamehMahmoud/ARM_STM32F103CT8_Bootloader_Project" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Implementation of SW Design for DIO & PORT AutoSar Driver</h3> <p> Applied full layered architecture model and Built MCAL layer with DIO, GPT, and PORT drivers. and Built ECUAL with LED and Button drivers. and Built Services layer with Scheduler and Application layer contains System Logic and Applied DET module for development error tracking.</p> <a href="https://github.com/OmarSamehMahmoud/AutoSar_DIO_PORT_Driver" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>ATM Machine</h3> <p> The system asks for user ID and password, checks Firebase database for validation and account status, If account is active, the user can: 1- Cash Withdraw 2- Balance Inquiry 3- Password Change 4- Fawry Service 5- Exit</p> <a href="https://github.com/OmarSamehMahmoud/ATM_Machine_Python_project" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Building Yocto Custom Image For IoT Smart Home</h3> <p>  Built Yocto image for Raspberry Pi to control a smart home system , Features include (lighting, door control, air conditioner, fans, fire alarm, and temperature monitoring), it interacts with a website and Firebase (real-time database).</p> <a href="https://github.com/OmarSamehMahmoud/Yocto_Image_For_IoT_Smart_Home" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Driver Awareness</h3> <p>  Deep learning-based system to prevent accidents, the system detects driver drowsiness or fatigue and activates a warning alarm.</p> <a href="https://github.com/OmarSamehMahmoud/Driver_Awarness_AI_Project" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>Smart IoT Factory (Graduation Project)</h3> <p> Allows owner and workers to control factory systems via website, it improves product quality and worker safety, The owner can monitor and control factory operations remotely.</p> <a href="https://github.com/OmarSamehMahmoud/Smat_Factroy_IoT_Graduation_Project" class="cta-link" target="_blank">View on GitHub</a> </p> <h3>AI Projects</h3> <p> Various machine learning and deep learning models: CNN with MNIST and CIFAR datasets, Covid-19 X-ray classification, LSTM for stock prediction and movie reviews, Linear and Logistic regression, Naive Bayes, AlexNet model.</p> <a href="https://github.com/OmarSamehMahmoud/AI_Projects" class="cta-link" target="_blank">View on GitHub</a> </p>
-					
-                </section>
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="fade-up">
+        <div class="stat-num" data-target="3">0</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num" data-target="15">0</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num" data-target="30">0</div>
+        <div class="stat-label">% Performance Boost</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num" data-target="4">0</div>
+        <div class="stat-label">Domains Led</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="section-divider"></div>
-        <section id="skills">
-          <h2>Skills</h2>
+<!-- ABOUT -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">// 01 — about</p>
+      <h2 class="section-title">Who I <span>Am</span></h2>
+    </div>
+    <div class="fade-up" style="max-width:760px;color:#a0aec0;line-height:1.9;font-size:1rem;">
+      <p style="margin-bottom:1.2rem;">
+        Results-driven <strong style="color:var(--text)">Senior Embedded Software Engineer</strong> with 3+ years of full-lifecycle experience in embedded systems, Linux-based platforms, IoT ecosystems, and AI-integrated smart devices.
+      </p>
+      <p style="margin-bottom:1.2rem;">
+        Deep expertise across <strong style="color:var(--accent)">AOSP</strong>, <strong style="color:var(--accent)">Linux kernel customization</strong>, device drivers, Yocto Project, MQTT/Azure IoT, STM32/ESP32 ecosystems, and AI-driven automation.
+      </p>
+      <p>
+        Strategic thinker with a track record of enhancing system performance by <strong style="color:var(--accent3)">30%</strong> through optimized embedded architectures and cross-functional leadership in R&amp;D environments.
+      </p>
+    </div>
+  </div>
+</section>
 
-          <div class="skill-category">
-            <h3>Languages</h3>
-            <div class="skills__container bd-grid" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
-			<!-- Left side: Skills Icons -->
-			<div style="flex: 1;">
-			 
-			  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-				<a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
-				  <img src="https://skillicons.dev/icons?i=c" alt="C Programming" height="40"/>
-				</a>
-				<a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer">
-				  <img src="https://skillicons.dev/icons?i=cpp" alt="C++" height="40"/>
-				</a>
-				<a href="https://www.python.org/" target="_blank" rel="noreferrer">
-				  <img src="https://skillicons.dev/icons?i=python" alt="Python" height="40"/>
-				</a>
-				<a href="https://www.rust-lang.org/" target="_blank" rel="noreferrer">
-				  <img src="https://skillicons.dev/icons?i=rust" alt="Rust" height="40"/>
-				</a>
-				<a href="https://www.java.com/" target="_blank" rel="noreferrer">
-				  <img src="https://skillicons.dev/icons?i=java" alt="Java" height="40"/>
-				</a>
-		   <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
-  <img src="https://skillicons.dev/icons?i=bash" alt="Bash" height="40"/>
-</a>
+<!-- EXPERIENCE -->
+<section id="experience" class="section-pad" style="background:var(--surface);">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">// 02 — experience</p>
+      <h2 class="section-title">Work <span>History</span></h2>
+    </div>
+    <div class="timeline">
 
-			  </div>
-			</div>
+      <div class="tl-item fade-up">
+        <div class="tl-meta">Jan 2024 — Present · Cairo, Egypt</div>
+        <div class="tl-role">Senior Software Developer II</div>
+        <div class="tl-company">ELARABY Group</div>
+        <div class="tl-tags">
+          <span class="tag tag-accent">IoT Lead</span>
+          <span class="tag tag-accent">AI Lead</span>
+          <span class="tag tag-accent">AOSP Lead</span>
+          <span class="tag tag-accent">UI Lead</span>
+          <span class="tag">LLMs</span>
+          <span class="tag">Multimodal</span>
+          <span class="tag">Azure IoT</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Spearhead end-to-end IoT solutions from firmware to cloud connectivity across product lines.</li>
+          <li>Lead AI initiatives covering generative AI (LLMs, multimodal), AI agents — full cycle from training to deployment.</li>
+          <li>Drive AOSP platform projects: system-level integrations, customization, and device bring-up.</li>
+          <li>Mentor interns in IoT &amp; AI, building team capability and delivering real project contributions.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item fade-up dim">
+        <div class="tl-meta">Jan 2023 — Jan 2024 · Cairo, Egypt</div>
+        <div class="tl-role">Embedded Linux Engineer</div>
+        <div class="tl-company">ELARABY Group</div>
+        <div class="tl-tags">
+          <span class="tag">Embedded Linux</span>
+          <span class="tag">AOSP</span>
+          <span class="tag">IoT</span>
+          <span class="tag">AI</span>
+          <span class="tag">Yocto</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Developed &amp; deployed IoT solutions — firmware, hardware integration, cloud connectivity.</li>
+          <li>Customized AOSP including device bring-up and platform optimization.</li>
+          <li>Built and integrated AI solutions from model development to real-world embedded deployment.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item fade-up dim">
+        <div class="tl-meta">May 2022 — Jan 2023 · Cairo, Egypt</div>
+        <div class="tl-role">Junior Embedded Linux Engineer</div>
+        <div class="tl-company">ELARABY Group</div>
+        <div class="tl-tags">
+          <span class="tag">RDK-V</span>
+          <span class="tag">Yocto</span>
+          <span class="tag">Device Drivers</span>
+          <span class="tag">LIRC</span>
+          <span class="tag">systemd</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Developed Linux device drivers for smart TV (led_indicator, device_self_test).</li>
+          <li>Built full RDK-V Yocto images (mediaclient / hybrid / hybriddtv).</li>
+          <li>Configured tornado remote control using irrecord + LIRC toolchain.</li>
+          <li>Used oscilloscope to measure IR NEC signals; created psplash boot logos for RDK images.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section-pad">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">// 03 — projects</p>
+      <h2 class="section-title">Featured <span>Work</span></h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card fade-up">
+        <div class="project-icon"><i class="fas fa-brain"></i></div>
+        <div class="project-title">Driver Awareness AI</div>
+        <div class="project-desc">Deep learning system that detects driver drowsiness/fatigue in real-time and triggers a warning alarm to prevent accidents.</div>
+        <div class="tl-tags" style="margin-bottom:0.75rem;">
+          <span class="tag tag-accent">Deep Learning</span><span class="tag">Computer Vision</span>
+        </div>
+        <a href="https://github.com/OmarSamehMahmoud/Driver_Awarness_AI_Project" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-icon"><i class="fas fa-industry"></i></div>
+        <div class="project-title">Smart IoT Factory</div>
+        <div class="project-desc">Graduation project — remote factory monitoring &amp; control via web. Improves product quality and worker safety at scale.</div>
+        <div class="tl-tags" style="margin-bottom:0.75rem;">
+          <span class="tag tag-accent">IoT</span><span class="tag">Web</span><span class="tag">Firebase</span>
+        </div>
+        <a href="https://github.com/OmarSamehMahmoud/Smat_Factroy_IoT_Graduation_Project" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-icon"><i class="fas fa-home"></i></div>
+        <div class="project-title">Yocto Smart Home IoT</div>
+        <div class="project-desc">Custom Yocto image for Raspberry Pi controlling lighting, doors, A/C, fans, fire alarms and temp monitoring via website &amp; Firebase.</div>
+        <div class="tl-tags" style="margin-bottom:0.75rem;">
+          <span class="tag tag-accent">Yocto</span><span class="tag">Raspberry Pi</span><span class="tag">Firebase</span>
+        </div>
+        <a href="https://github.com/OmarSamehMahmoud/Yocto_Image_For_IoT_Smart_Home" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-icon"><i class="fas fa-microchip"></i></div>
+        <div class="project-title">ARM Bootloader</div>
+        <div class="project-desc">STM32 system-memory bootloader with Flash driver (erase/read/write), USART DMA, and Python flasher script.</div>
+        <div class="tl-tags" style="margin-bottom:0.75rem;">
+          <span class="tag tag-accent">STM32</span><span class="tag">ARM</span><span class="tag">Python</span>
+        </div>
+        <a href="https://github.com/OmarSamehMahmoud/ARM_STM32F103CT8_Bootloader_Project" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-icon"><i class="fas fa-car"></i></div>
+        <div class="project-title">AutoSAR DIO/PORT Driver</div>
+        <div class="project-desc">Full layered AUTOSAR architecture with MCAL, ECUAL, Services, and DET module for development error tracking.</div>
+        <div class="tl-tags" style="margin-bottom:0.75rem;">
+          <span class="tag tag-accent">AUTOSAR</span><span class="tag">C</span><span class="tag">Embedded</span>
+        </div>
+        <a href="https://github.com/OmarSamehMahmoud/AutoSar_DIO_PORT_Driver" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-icon"><i class="fas fa-robot"></i></div>
+        <div class="project-title">AI Projects Collection</div>
+        <div class="project-desc">CNN (MNIST/CIFAR), Covid-19 X-ray classifier, LSTM for stock prediction, Naive Bayes, AlexNet, and more.</div>
+        <div class="tl-tags" style="margin-bottom:0.75rem;">
+          <span class="tag tag-accent">ML/DL</span><span class="tag">TensorFlow</span><span class="tag">Python</span>
+        </div>
+        <a href="https://github.com/OmarSamehMahmoud/AI_Projects" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;" class="fade-up">
+      <a href="https://github.com/OmarSamehMahmoud" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> View All on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section-pad" style="background:var(--surface);">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">// 04 — skills</p>
+      <h2 class="section-title">Technical <span>Arsenal</span></h2>
+    </div>
+    <div class="skills-section fade-up">
+
+      <div class="skill-group">
+        <div class="skill-group-title">Core Languages</div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">C / C++</span><span class="skill-bar-pct">95%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Bash / Shell</span><span class="skill-bar-pct">85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Rust</span><span class="skill-bar-pct">70%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Java</span><span class="skill-bar-pct">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Platforms & Domains</div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Embedded Linux / Yocto</span><span class="skill-bar-pct">92%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">AOSP</span><span class="skill-bar-pct">88%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">IoT / MQTT / Azure IoT</span><span class="skill-bar-pct">90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">AI / ML / Deep Learning</span><span class="skill-bar-pct">82%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">STM32 / ESP32 / AVR</span><span class="skill-bar-pct">88%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="fade-up" style="margin-top:2rem;">
+      <div class="skill-group">
+        <div class="skill-group-title">Tools & Technologies</div>
+        <div class="icons-strip">
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=docker" alt="Docker"/> Docker</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=git" alt="Git"/> Git</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=azure" alt="Azure"/> Azure</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow"/> TensorFlow</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=opencv" alt="OpenCV"/> OpenCV</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=raspberrypi" alt="RPi"/> Raspberry Pi</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=arduino" alt="Arduino"/> Arduino</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=firebase" alt="Firebase"/> Firebase</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=qt" alt="Qt"/> Qt</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=linux" alt="Linux"/> Linux</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=postman" alt="Postman"/> Postman</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=androidstudio" alt="Android Studio"/> Android Studio</div>
+          <div class="icon-pill"><img src="https://skillicons.dev/icons?i=vscode" alt="VS Code"/> VS Code</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">// 05 — contact</p>
+      <h2 class="section-title">Let's <span>Connect</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <p style="color:var(--muted);font-size:1rem;line-height:1.9;max-width:440px;">
+          I'm open to senior engineering roles, consulting, and interesting collaborations in IoT, AI, embedded systems, or AOSP. Reach out — I respond fast.
+        </p>
+        <div style="margin-top:1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--muted);">
+          <span style="color:var(--accent)">▸</span> Based in Cairo, Egypt<br>
+          <span style="color:var(--accent)">▸</span> Open to remote worldwide
+        </div>
+      </div>
+      <div class="contact-links fade-up">
+        <a href="mailto:omarsamehmahmoud@gmail.com" class="contact-link">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-val">omarsamehmahmoud@gmail.com</div>
           </div>
-
-          <div class="skill-category">
-            <h3>Operating Systems</h3>
-            <div style="flex: 1;">
-			 
-			  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-				<a href="https://www.linux.org/" target="_blank" rel="noreferrer">
-				  <img src="https://skillicons.dev/icons?i=linux" alt="Linux" height="40"/>
-				</a>
-				<a href="https://www.microsoft.com/en-us/windows" target="_blank" rel="noreferrer">
-  <img src="https://skillicons.dev/icons?i=windows" alt="Windows" height="40"/>
-</a>
-			  </div>
-			</div>
+        </a>
+        <a href="https://www.linkedin.com/in/omarsamehmahmoudsyam/" target="_blank" class="contact-link">
+          <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+          <div>
+            <div class="contact-info-label">LinkedIn</div>
+            <div class="contact-info-val">omarsamehmahmoudsyam</div>
           </div>
-
-          <div class="skill-category">
-            <h3>Tools</h3>
-            <div class="skills__container bd-grid" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
-    <!-- Left side: Skills Icons -->
-    <div style="flex: 1;">
-     
-      <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-
-        <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=androidstudio" alt="Android Studio" height="40"/>
         </a>
-        <a href="https://git-scm.com/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=git" alt="Git" height="40"/>
-        </a>
-        <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=docker" alt="Docker" height="40"/>
-        </a>
-        <a href="https://www.raspberrypi.org/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=raspberrypi" alt="Raspberry Pi" height="40"/>
-        </a>
-        <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=arduino" alt="Arduino" height="40"/>
-        </a>
-        <a href="https://nodejs.org/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=nodejs" alt="NodeJS" height="40"/>
-        </a>
-        <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB" height="40"/>
-        </a>
-        <a href="https://opencv.org/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=opencv" alt="OpenCV" height="40"/>
-        </a>
-        <a href="https://www.qt.io/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=qt" alt="Qt" height="40"/>
-        </a>
-        <a href="https://www.tensorflow.org/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow" height="40"/>
-        </a>
-        <a href="https://azure.microsoft.com/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=azure" alt="Azure" height="40"/>
-        </a>
-        <a href="https://www.postman.com/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=postman" alt="Postman" height="40"/>
-        </a>
-        <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=vscode" alt="VS Code" height="40"/>
-        </a>
-        <a href="https://firebase.google.com/" target="_blank" rel="noreferrer">
-          <img src="https://skillicons.dev/icons?i=firebase" alt="Firebase" height="40"/>
+        <a href="https://github.com/OmarSamehMahmoud" target="_blank" class="contact-link">
+          <div class="contact-icon"><i class="fab fa-github"></i></div>
+          <div>
+            <div class="contact-info-label">GitHub</div>
+            <div class="contact-info-val">OmarSamehMahmoud</div>
+          </div>
         </a>
       </div>
     </div>
-          </div>
+  </div>
+</section>
 
-        </section>
+<footer>
+  <span>Omar Sameh</span> — Senior Software Developer 
+</footer>
 
-        <footer id="footer">
-          <ul class="copyright">
-            <li>&copy; Omar Sameh</li>
-            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-          </ul>
-        </footer>
-      </section>
-    </div>
-
-    <script>
-      if ('addEventListener' in window) {
-        window.addEventListener('load', function () {
-          document.body.className = document.body.className.replace(/\bis-loading\b/, '');
-        });
-        document.body.className += navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '';
+<script>
+  // Intersection observer for fade-up
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
       }
-    </script>
-  </body>
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Animate skill bars when visible
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skills-section, .skill-group').forEach(el => barObs.observe(el));
+
+  // Counter animation for stats
+  function animateCounter(el, target) {
+    let current = 0;
+    const step = Math.ceil(target / 40);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current + (el.closest('.fade-up').querySelector('.stat-label').textContent.includes('%') ? '%' : '+');
+      if (current >= target) clearInterval(timer);
+    }, 40);
+  }
+  const statObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const num = e.target.querySelector('.stat-num');
+        if (num) animateCounter(num, parseInt(num.dataset.target));
+        statObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('#stats .fade-up').forEach(el => statObs.observe(el));
+</script>
+</body>
 </html>
